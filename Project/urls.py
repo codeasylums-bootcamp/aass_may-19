@@ -1,4 +1,4 @@
-"""PostWhenYouWish URL Configuration
+"""Project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -13,9 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.views.debug import default_urlconf
+from django.urls import path, re_path, include
+from core import views as core_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    url(r'^$', core_views.home, name='home'),
+    # url(r'^login/$', auth_views.login, name='login'),
+    # url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'accounts/', include('django.contrib.auth.urls')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^$', default_urlconf),
 ]
