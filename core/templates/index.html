@@ -1,25 +1,226 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-{#  <link rel="stylesheet" href="/resources/demos/style.css">#}
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard Admin </title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="{% static 'css/fullcalendar.min.css' %}">
+    <!-- https://fullcalendar.io/ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="{% static 'css/surya.css' %}">
 </head>
-<body>
-{% block content %}
-<h1>Hello world {{ user.username }}</h1>
-{% endblock %}
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+
+<body id="reportsPage">
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand" href="#">
+                            <i class="fas fa-3x fa-tachometer-alt tm-site-icon"></i>
+                            <h1 class="tm-site-title mb-0">Dashboard</h1>
+                        </a>
+                        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Dashboard
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Reports
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Daily Report</a>
+                                        <a class="dropdown-item" href="#">Weekly Report</a>
+                                        <a class="dropdown-item" href="#">Yearly Report</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="products.html">Products</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="accounts.html">Accounts</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Settings
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="#">Billing</a>
+                                        <!-- <a class="dropdown-item" href="#">Customize</a> -->
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex" href="login.html">
+                                        <i class="far fa-user mr-2 tm-logout-icon"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- row -->
+            <div class="row tm-content-row tm-mt-big">
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Latest Posts</h2>
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Performance</h2>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-small">
+                    <div class="bg-white tm-block h-100">
+                        <img class="img1234" src="data:image/png;base64,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" alt="">
+                        <canvas id="pieChart" class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-8">
+                                <h2 class="tm-block-title d-inline-block">Highest responsed post</h2>
+
+                            </div>
+                            <div class="col-4 text-right">
+                                <a href="products.html" class="tm-link-black">View All</a>
+                            </div>
+                        </div>
+                        <ol class="tm-list-group tm-list-group-alternate-color tm-list-group-pad-big">
+                            <li class="tm-list-group-item">
+                                happy birthday
+                            </li>
+                            <li class="tm-list-group-item">
+                                no thanks
+                            </li>
+                            <li class="tm-list-group-item">
+                               nice work
+                            </li>
+                            <li class="tm-list-group-item">
+                                motivating story
+                            </li>
+                            <li class="tm-list-group-item">
+                                nailed it
+                            </li>
+                            <li class="tm-list-group-item">
+                                shut up
+                            </li>
+                            <li class="tm-list-group-item">
+                               u r welcome
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="tm-col tm-col-big">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Calendar</h2>
+                        <div id="calendar"></div>
+                        <div class="row mt-4">
+                            <div class="col-12 text-right">
+                                <a href="#" class="tm-link-black">View Schedules</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tm-col tm-col-small">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title">Upcoming Posts</h2>
+                        <ol class="tm-list-group">
+                            <li class="tm-list-group-item">List of pending posts</li>
+                            <!-- <li class="tm-list-group-item">Lorem ipsum doloe</li>
+                            <li class="tm-list-group-item">Read reports</li>
+                            <li class="tm-list-group-item">Write email</li>
+                            
+                            <li class="tm-list-group-item">Call customers</li>
+                            <li class="tm-list-group-item">Go to meeting</li>
+                            <li class="tm-list-group-item">Weekly plan</li>
+                            <li class="tm-list-group-item">Ask for feedback</li>
+                            
+                            <li class="tm-list-group-item">Meet Supervisor</li>
+                            <li class="tm-list-group-item">Company trip</li> -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <footer class="row tm-mt-small">
+                <div class="col-12 font-weight-light">
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                         Created by
+                        <a href="#" class="text-white tm-footer-link">Team AASS</a> |  Distributed by <a href="https://www.codeasylums.com/" class="text-blue tm-footer-link">Codeasylums</a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- https://jquery.com/download/ -->
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <!-- https://momentjs.com/ -->
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/Chart.min.js' %}"></script>
+    <!-- http://www.chartjs.org/docs/latest/ -->
+    <script src="{% static 'js/fullcalendar.min.js' %}"></script>
+    <!-- https://fullcalendar.io/ -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- https://getbootstrap.com/ -->
+    <script src="{% static 'js/tooplate-scripts.js' %}"></script>
+    <script>
+        let ctxLine,
+            ctxBar,
+            ctxPie,
+            optionsLine,
+            optionsBar,
+            optionsPie,
+            configLine,
+            configBar,
+            configPie,
+            lineChart;
+        barChart, pieChart;
+        // DOM is ready
+        $(function () {
+            updateChartOptions();
+            drawLineChart(); // Line Chart
+            drawBarChart(); // Bar Chart
+            // drawPieChart(); // Pie Chart
+            drawCalendar(); // Calendar
+
+            $(window).resize(function () {
+                updateChartOptions();
+                updateLineChart();
+                updateBarChart();
+                reloadPage();
+            });
+        })
+    </script>
 </body>
 </html>
