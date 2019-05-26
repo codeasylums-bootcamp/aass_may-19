@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="post-form.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMHELi8F60VE9i5Hu0IcqxtR83XhJD7PR8c3YXGTMLK3Sm89dAig">
+</head>
+
+<body>
+
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark orange lighten-1">
+        <a class="navbar-brand" href="#">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcsaUulV23BqrxoDEIj-D7C1tz2U8wLMCmjCbi9eRsYxlp4je8"
+                alt="LOGO" style="width:50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" onclick="highlight(this)">
+                    <a class="nav-link" href="#">HOME</a>
+                </li>
+                <li class="nav-item" onclick="highlight(this)">
+                    <a class="nav-link" href="#">RECENTS</a>
+                </li>
+                <li class="nav-item" onclick="highlight(this)">
+                    <a class="nav-link" href="#">SCHEDULE POST</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <div class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgJ_xjHIEHFLZfUV7lfksCLV0oMFtV6dDeTYNC9WUVFYiKRYOvNQ"
+                            alt="logo" class="rounded-circle z-depth-0" style="width:40px;">
+
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <form class="form-group">
+
+        <div class="form-label-group">
+            <label for="name">NAME:</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter the name" required autofocus>
+        </div>
+        <br>
+
+        <div class="form-label-group">
+                <label for="date_time">DATE & TIME:</label>
+            <input type="datetime-local" id="date_time" class="form-control" placeholder="Password" required>
+        </div>
+        <br>
+
+        <div class="form-group1 form-check">
+            <label class="form-check-label">POST:</label><br>
+            <textarea class="form-check-input" placeholder="Post to be Scheduled"
+                style="wrap:normal; width:100%; height:100px;"></textarea>
+            <br>
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+    </form>
+
+</body>
+
+</html>
