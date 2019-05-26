@@ -1,15 +1,109 @@
-{% extends 'index.html' %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>login page</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
-  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
-{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: white;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .heading {
+        font-family: fantasy;
+        font-size: 60px;
+        color: red;
+    }
+
+    span {
+        color: green;
+    }
+
+</style>
+
+<body class="text-center">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <img src="{% static 'img/large.png' %}" class="img img-responsive rounded mx-auto d-block">
+            <h1>SignIn to Continue</h1>
+{#            <form class="form-signin" method="post" novalidate>#}
+{#                {% csrf_token %}#}
+{#                {% include 'includes/form.html' %}#}
+{#                <button type="submit" class="btn btn-outline-primary btn-block">#}
+{#                    Place it#}
+{#                </button>#}
+{#            </form>#}
+            <a href="{% url 'social:begin' 'facebook' %}"><button class="btn btn-primary btn-block">Continue with Facebook</button></a>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
